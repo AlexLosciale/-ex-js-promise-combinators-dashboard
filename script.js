@@ -1,4 +1,5 @@
 //In questo esercizio, utilizzerai Promise.all() per creare la funzione getDashboardData(query),
+
 //  che accetta una città come input e recupera simultaneamente:
 
 //Nome completo della città e paese da  /destinations?search=[query]
