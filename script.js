@@ -43,11 +43,8 @@
 
 async function getDashboardData(query) {
     try {
-        const [destinationResponse, weatherResponse, airportResponse] = await Promise.all([
-            fetch(`https://boolean-spec-frontend.vercel.app/freetestapi/destinations?search=${query}`),
-            fetch(`https://boolean-spec-frontend.vercel.app/freetestapi/weathers?search=${query}`),
-            fetch(`https://boolean-spec-frontend.vercel.app/freetestapi/airports?search=${query}`)
-        ]);
+        const endpoint = [destinations, weather, airports].map((endpoint) => `https://boolean-spec-frontend.vercel.app/freetestapi/${endpoint}?search=${query}`);
+        const [destinations, weather, airports] = await Promise.all(endpoint.map(url => fetch(url).then(res => res.json())));
 
         const destinationData = await destinationResponse.json();
         const weatherData = await weatherResponse.json();
